@@ -20,4 +20,4 @@
 You can install the tool directly from GitHub using `pip`:
 
 ```bash
-pip3 install --user git+[https://github.com/gustavodavidecoutinho/bin-txt-tools.git](https://github.com/gustavodavidecoutinho/bin-txt-tools.git)
+pip3 install --user git+https://github.com/gustavodavidecoutinho/bin-txt-tools.git
