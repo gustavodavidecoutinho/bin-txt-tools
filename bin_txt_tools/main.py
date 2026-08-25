@@ -62,18 +62,7 @@ def decode_image():
         print("Invalid width. It has to be a whole number.")
         return
         
-    print("Paste your binary string (zeros and ones). Press Enter twice when finished:")
-    lines = []
-    while True:
-        try:
-            line = input()
-            if not line.strip():
-                break
-            lines.append(line.strip())
-        except EOFError:
-            break
-            
-    bin_input = "".join(lines)
+    bin_input = input("Paste your binary string (zeros and ones): \n> ")
     clean_bin = "".join(bin_input.split())
     
     print(f"\nTotal bits: {len(clean_bin)}")
