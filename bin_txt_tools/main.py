@@ -59,21 +59,48 @@ def decode_image():
         print(visual_row)
     print("-" * 60)
 
+def encode_file_to_binary():
+    print("\n=== FILE TO BINARY ENCODER ===")
+    filepath = input("Enter the path to the text or ASCII file you want to encode (e.g., text.txt): \n> ").strip()
+    
+    if not os.path.exists(filepath):
+        print(f"Error: File '{filepath}' not found.")
+        print("Tip: Create a text file on your Desktop, put your text or ASCII art inside, and point to it.")
+        return
+        
+    with open(filepath, "r", encoding="utf-8") as f:
+        file_content = f.read()
+        
+    if not file_content:
+        print("The file is empty.")
+        return
+        
+    # Converte cada caractere do ficheiro (incluindo quebras de linha e espaços) para binário de 8 bits
+    binary_result = ' '.join(format(ord(char), '08b') for char in file_content)
+    
+    print(f"\nTotal characters encoded: {len(file_content)}")
+    print("\n[Binary Result]:")
+    print(binary_result)
+    print("-" * 60)
+
 def main():
     while True:
-        print("\n=== MULTIFUNCTION DECODER TOOL ===")
+        print("\n=== MULTIFUNCTION DECODER & ENCODER TOOL ===")
         print("1. Decode Binary to Text")
         print("2. Decode Binary to Image / Pixel Matrix")
-        print("3. Exit")
+        print("3. Encode Text/ASCII File to Binary")
+        print("4. Exit")
         
-        choice = input("Choose an option (1, 2, or 3): \n> ").strip()
+        choice = input("Choose an option (1-4): \n> ").strip()
         
         if choice == '1':
             decode_text()
         elif choice == '2':
             decode_image()
         elif choice == '3':
-            print("Exiting... Goodbye!")
+            encode_file_to_binary()
+        elif choice == '4':
+            print(f"Exiting... Goodbye!")
             break
         else:
             print("Invalid option. Please try again.")
