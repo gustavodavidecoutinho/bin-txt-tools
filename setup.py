@@ -10,9 +10,8 @@ setup(
         ],
     },
     author="Gustavo",
-    description="An open-source CLI suite for binary, text, and pixel art 
-manipulation.",
-    long_description=open("README.md").read(),
+    description="An open-source CLI suite for binary, text, and pixel art manipulation.",
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/gustavodavidecoutinho/bin-txt-tools",
     classifiers=[
