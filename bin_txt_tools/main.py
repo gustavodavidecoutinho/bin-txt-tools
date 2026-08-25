@@ -1,41 +1,14 @@
 import os
-import json
-
-CONFIG_FILE = os.path.expanduser("~/.bin_txt_tools_config.json")
-
-def load_config():
-    if os.path.exists(CONFIG_FILE):
-        try:
-            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            return {}
-    return {}
-
-def save_config(config):
-    try:
-        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
-            json.dump(config, f, indent=4)
-    except Exception as e:
-        print(f"Error saving config: {e}")
-
-def first_run_setup():
-    config = load_config()
-    if "username" not in config:
-        print("\n=== WELCOME TO BIN-TXT-TOOLS ===")
-        print("The ultimate open-source binary & text CLI suite.")
-        name = input("Enter your name for display purposes only (or just press Enter to skip):\n> ").strip()
-        config["username"] = name if name else "Traveler"
-        save_config(config)
-        print(f"Setup complete! Welcome, {config['username']}.\n")
-    return config["username"]
+from PIL import Image
 
 def decode_text():
-    print("\n--- BINARY DECODER ---")
+    print("\n--- BINARY DECODER BY Gustavo ---")
     bin_input = input("Paste the whole binary string: \n> ")
     
+    # Clean spaces and line breaks
     clean_bin = "".join(bin_input.split())
     
+    # Validate if length is a multiple of 8
     if len(clean_bin) % 8 != 0:
         print(f"Warning: The total number of bits ({len(clean_bin)}) is not a multiple of 8. The message might get cut off.")
         
@@ -68,39 +41,28 @@ def decode_image():
     print(f"\nTotal bits: {len(clean_bin)}")
     print("[Graphic Result]:\n")
     
+    # Draw row by row replacing 1 with a full block and 0 with a space
     for i in range(0, len(clean_bin), width):
         row = clean_bin[i:i+width]
         visual_row = row.replace('1', '█').replace('0', ' ')
         print(visual_row)
     print("-" * 40)
 
-def text_to_binary():
-    print("\n--- TEXT TO BINARY ENCODER ---")
-    text = input("Enter text to encode: \n> ")
-    binary = ' '.join(format(ord(char), '08b') for char in text)
-    print(f"\n[Binary Result]:\n{binary}")
-    print("-" * 40)
-
 def main():
-    username = first_run_setup()
-    
     while True:
-        print(f"\n=== MULTIFUNCTION DECODER TOOL (User: {username}) ===")
+        print("\n=== MULTIFUNCTION DECODER TOOL ===")
         print("1. Decode Binary to Text")
         print("2. Decode Binary to Image / Pixel Matrix")
-        print("3. Encode Text to Binary")
-        print("4. Exit")
+        print("3. Exit")
         
-        choice = input("Choose an option (1-4): \n> ").strip()
+        choice = input("Choose an option (1, 2, or 3): \n> ").strip()
         
         if choice == '1':
             decode_text()
         elif choice == '2':
             decode_image()
         elif choice == '3':
-            text_to_binary()
-        elif choice == '4':
-            print(f"Exiting... Goodbye, {username}!")
+            print("Exiting... Goodbye, Gustavo!")
             break
         else:
             print("Invalid option. Please try again.")
