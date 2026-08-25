@@ -3,25 +3,18 @@ import sys
 
 def decode_text():
     print("\n=== BINARY DECODER ===")
-    print("Instructions: Paste your binary text below.")
-    print("When finished, press Enter on a new line and type 'END' (or press Ctrl+D):")
-    print("-" * 60)
+    filepath = input("Enter the path to the text file containing binary data (e.g., bin.txt): \n> ").strip()
     
-    lines = []
-    while True:
-        try:
-            line = input()
-            if line.strip() == "END":
-                break
-            lines.append(line)
-        except EOFError:
-            break
-            
-    bin_input = "".join(lines)
+    if os.path.exists(filepath):
+        with open(filepath, "r", encoding="utf-8") as f:
+            bin_input = f.read()
+    else:
+        bin_input = filepath
+        
     clean_bin = "".join(bin_input.split())
     
     if len(clean_bin) % 8 != 0:
-        print(f"\nWarning: The total number of bits ({len(clean_bin)}) is not a multiple of 8. The message might get cut off.")
+        print(f"Warning: The total number of bits ({len(clean_bin)}) is not a multiple of 8. The message might get cut off.")
         
     final_text = ""
     for i in range(0, len(clean_bin) - 7, 8):
@@ -38,30 +31,23 @@ def decode_text():
 
 def decode_image():
     print("\n=== IMAGE / PIXEL ART DECODER ===")
-    print("Instructions:")
-    print("1. Enter the width of the grid (e.g., 23 for Arecibo).")
-    print("2. Paste your binary block (zeros and ones).")
-    print("3. Press Enter, type 'END' on a new line, and press Enter again to generate.")
-    print("-" * 60)
     
     try:
-        width = int(input("What is the width (number of pixels per row)? \n> "))
+        width = int(input("What is the width (number of pixels per row, e.g., 23)? \n> "))
     except ValueError:
         print("Invalid width. It has to be a whole number.")
         return
         
-    print("\nPaste your binary string now (type 'END' on a new line when done):")
-    lines = []
-    while True:
-        try:
-            line = input()
-            if line.strip() == "END":
-                break
-            lines.append(line)
-        except EOFError:
-            break
-            
-    bin_input = "".join(lines)
+    filepath = input("Enter the path to the text file with the binary matrix (e.g., arecibo.txt): \n> ").strip()
+    
+    if not os.path.exists(filepath):
+        print(f"Error: File '{filepath}' not found.")
+        print("Tip: Create a file named 'arecibo.txt' on your Desktop, paste your binary block there, and point to it.")
+        return
+        
+    with open(filepath, "r", encoding="utf-8") as f:
+        bin_input = f.read()
+        
     clean_bin = "".join(bin_input.split())
     
     print(f"\nTotal bits processed: {len(clean_bin)}")
