@@ -22,11 +22,11 @@ You can install the tool directly from GitHub using `pip`:
 ## 2. iOS Version via Sideloadly
 If you want to install the native iOS app onto your physical iOS device using Sideloadly, follow these steps:
 
-Prerequisites: A computer with `sideloady!`, and an Apple ID.
+Prerequisites: A computer with `sideloady!`, and an Apple ID (preferably a new apple id just for this).
 
 Steps:
 
-Get or build the .ipa file from this github on /iOS_App/BinTxtTools.ipa (you can also download the full xcode project to modify something or install it yourself!).
+Get the .ipa file from this github on /iOS_App/BinTxtTools.ipa (you can also download the full xcode project to modify something or install it yourself!).
 
 Connect your iPhone via USB/Lightning and open Sideloadly.
 
@@ -40,7 +40,7 @@ The app will then be installed on you iPhone, if you try to open the app as it i
 
 `Congrats!` You successfully installed BinTxtTools on your platform
 
-If you have any question you can reach out to : `gustavo.bintxttools@gmail.com`
+If you have any question you can reach out to : `gdavidecoutinho@gmail.com`
 
 # Author 
 # Gustavo — Creator & Developer
